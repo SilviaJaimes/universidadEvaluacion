@@ -85,7 +85,7 @@ Para realizar la paginación se va al apartado de "Query" y se ingresa lo siguie
 ![image](https://github.com/SilviaJaimes/Proyecto-Veterinaria/assets/132016483/22683e46-037e-4f30-96b8-161df8622b40)
 
 
-## 1. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre:
+**1. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre:**
 
 **Endpoint**: `http://localhost:5033/api/Persona/consulta-1`
 
