@@ -44,39 +44,27 @@ public class GradoRepository : GenericRepository<Grado>, IGrado
         return resultado;
     }
 
-    /* public async Task<IEnumerable<object>> GradoYCredito()
+    public async Task<IEnumerable<object>> CreditosPorTipoDeAsignatura()
     {
         var resultado = await _context.Grados
-            .Where(grado => grado.Asignaturas.Any())
-            .Select(grado => new
+            .SelectMany(g => g.Asignaturas, (g, a) => new
             {
-                NombreGrado = grado.Nombre,
-                CreditosPorTipoDeAsignatura = _context.Asignaturas
-                    .Where(asignatura => asignatura.IdGrado == grado.Id)
-                    .GroupBy(asignatura => asignatura.Tipo)
-                    .Select(grupo => new
-                    {
-                        TipoAsignatura = ObtenerNombreTipoAsignatura(grupo.Key),
-                        SumaCreditos = grupo.Sum(asignatura => asignatura.Creditos)
-                    })
-                    .OrderByDescending(grupo => grupo.SumaCreditos)
-                    .ToList()
+                NombreGrado = g.Nombre,
+                TipoAsignatura = a.Tipo,
+                Creditos = a.Creditos
             })
+            .GroupBy(x => new { x.NombreGrado, x.TipoAsignatura })
+            .Select(g => new
+            {
+                NombreGrado = g.Key.NombreGrado,
+                TipoAsignatura = g.Key.TipoAsignatura,
+                SumaCreditos = g.Sum(x => x.Creditos)
+            })
+            .OrderByDescending(x => x.SumaCreditos)
             .ToListAsync();
 
         return resultado;
     }
-
-    private static string ObtenerNombreTipoAsignatura(Asignatura.Tipos tipo)
-    {
-        return tipo switch
-        {
-            Asignatura.Tipos.Basica => "Basica",
-            Asignatura.Tipos.Obligatoria => "Obligatoria",
-            Asignatura.Tipos.Optativa => "Optativa",
-            _ => tipo.ToString()  // Manejar casos adicionales según sea necesario
-        };
-    } */
 
     public override async Task<IEnumerable<Grado>> GetAllAsync()
     {

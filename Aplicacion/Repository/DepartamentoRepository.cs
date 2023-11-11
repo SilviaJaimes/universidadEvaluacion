@@ -81,6 +81,34 @@ public class DepartamentoRepository : GenericRepository<Departamento>, IDepartam
         return resultado;
     }
 
+    public async Task<IEnumerable<object>> DepartamentoSinProfesorAsociado()
+    {
+        var departamentos = await (
+            from d in _context.Departamentos
+            where !d.Profesores.Any() 
+            select new
+            {
+                Nombre = d.Nombre
+            })
+            .ToListAsync();
+
+        return departamentos;
+    }
+
+    public async Task<IEnumerable<object>> DepartamentosSinAsignaturas()
+    {
+        var departamentosSinAsignaturas = await _context.Departamentos
+            .Where(d => !d.Profesores.Any(p => p.Asignaturas.Any()))
+            .Select(d => new
+            {
+                NombreDepartamento = d.Nombre
+            })
+            .ToListAsync();
+
+        return departamentosSinAsignaturas;
+    }
+
+
     public override async Task<IEnumerable<Departamento>> GetAllAsync()
     {
         return await _context.Departamentos

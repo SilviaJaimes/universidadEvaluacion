@@ -58,7 +58,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-1")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> ListadoAlumnos()
@@ -69,7 +69,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-2")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AlumnosSinTelefono()
@@ -80,7 +80,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-3")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> Alumnos1999()
@@ -91,7 +91,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-4")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> ProfesoresSinTelefono()
@@ -102,7 +102,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-6")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AlumnasMatricula()
@@ -113,7 +113,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-8")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> ProfesorDepartamento()
@@ -124,7 +124,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-11")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AlumnosCursoEscolar()
@@ -135,7 +135,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-12")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> ProfesoresDepartamentos()
@@ -146,7 +146,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-14")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> ProfesoresSinAsignatura()
@@ -157,7 +157,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-17")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> TotalAlumnas()
@@ -168,7 +168,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-18")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AlumnosNacidosEn1999()
@@ -179,7 +179,7 @@ public class PersonaController : BaseApiController
     }
 
     [HttpGet("consulta-19")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> ProfesoresPorDepartamento()
@@ -189,8 +189,19 @@ public class PersonaController : BaseApiController
         return Ok(dto);
     }
 
+    [HttpGet("consulta-24")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AlumnosMatriculadosPorCurso()
+    {
+        var entidad = await unitofwork.Personas.AlumnosMatriculadosPorCurso();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
     [HttpGet("consulta-25")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AsignaturaPorProfesor()
@@ -199,6 +210,39 @@ public class PersonaController : BaseApiController
         var dto = mapper.Map<IEnumerable<object>>(entidad);
         return Ok(dto);
     }
+
+    [HttpGet("consulta-26")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ObtenerAlumnoMasJoven()
+    {
+        var entidad = await unitofwork.Personas.ObtenerAlumnoMasJoven();
+        var dto = mapper.Map<Persona>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-27")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ProfesoresSinDepartamentos()
+    {
+        var entidad = await unitofwork.Personas.ProfesoresSinDepartamentos();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-29")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ProfesoresDepartamentoSinAsignatura()
+    {
+        var entidad = await unitofwork.Personas.ProfesoresDepartamentoSinAsignatura();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    } 
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]

@@ -58,7 +58,7 @@ public class AsignaturaController : BaseApiController
     }
 
     [HttpGet("consulta-5")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> Asignaturas()
@@ -69,7 +69,7 @@ public class AsignaturaController : BaseApiController
     }
 
     [HttpGet("consulta-7")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AsignaturasOfertadas()
@@ -80,7 +80,7 @@ public class AsignaturaController : BaseApiController
     }
 
     [HttpGet("consulta-9")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AsignaturasNit()
@@ -91,12 +91,23 @@ public class AsignaturaController : BaseApiController
     }
 
     [HttpGet("consulta-15")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AsignaturasSinProfesores()
     {
         var entidad = await unitofwork.Asignaturas.AsignaturasSinProfesores();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-30")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AsignaturasSinProfesor()
+    {
+        var entidad = await unitofwork.Asignaturas.AsignaturasSinProfesor();
         var dto = mapper.Map<IEnumerable<object>>(entidad);
         return Ok(dto);
     }

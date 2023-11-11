@@ -226,20 +226,20 @@ public class PersonaRepository : GenericRepository<Persona>, IPersona
         return resultado;
     }
 
-    /* public async Task<IEnumerable<object>> MatriculaPorAsignatura()
+    public async Task<IEnumerable<object>> AlumnosMatriculadosPorCurso()
     {
-        var resultado = await _context.Grados
-            .Where(d => d.Asignaturas == d.Asignaturas) 
-            .Select(d => new
+        var resultado = await _context.Matriculas
+            .GroupBy(m => m.CursoEscolar.AnyoInicio)
+            .Select(g => new
             {
-                NombreGrado = d.Nombre, 
-                CantidadAsignaturas = d.Asignaturas.Count
+                AnioCursoEscolar = g.Key,
+                NumAlumnosMatriculados = g.Count()
             })
-            .OrderByDescending(dp => dp.CantidadAsignaturas)
+            .OrderBy(g => g.AnioCursoEscolar)
             .ToListAsync();
 
         return resultado;
-    } */
+    }
 
     public async Task<IEnumerable<object>> AsignaturaPorProfesor()
     {
@@ -257,6 +257,45 @@ public class PersonaRepository : GenericRepository<Persona>, IPersona
             .ToListAsync();
 
         return resultado;
+    }
+
+    public async Task<Persona> ObtenerAlumnoMasJoven()
+    {
+        var alumnoMasJoven = await _context.Personas
+            .Where(p => p.Tipo == Persona.Tipos.Alumno)
+            .OrderBy(p => p.FechaNacimiento)
+            .FirstOrDefaultAsync();
+
+        return alumnoMasJoven;
+    }
+
+    public async Task<IEnumerable<object>> ProfesoresSinDepartamentos()
+    {
+        var profesoresSinDepartamento = await _context.Personas
+            .Where(p => p.Tipo == Persona.Tipos.Profesor && p.Profesores.All(pf => pf.Departamento == null))
+            .Select(p => new
+            {
+                NombreProfesor = $"{p.Nombre} {p.Apellido1} {p.Apellido2}",
+                Departamento = "Sin asignar"
+            })
+            .ToListAsync();
+
+        return profesoresSinDepartamento;
+    }
+
+    public async Task<IEnumerable<object>> ProfesoresDepartamentoSinAsignatura()
+    {
+        var profesoresSinAsignaturas = await _context.Profesores
+            .Where(p => p.IdDepartamento != null && !p.Asignaturas.Any())
+            .Select(p => new
+            {
+                NombreProfesor = p.Persona.Nombre,
+                ApellidoProfesor = p.Persona.Apellido1,
+                DepartamentoAsociado = p.Departamento.Nombre
+            })
+            .ToListAsync();
+
+        return profesoresSinAsignaturas;
     }
 
     public override async Task<IEnumerable<Persona>> GetAllAsync()

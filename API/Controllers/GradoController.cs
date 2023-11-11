@@ -58,7 +58,7 @@ public class GradoController : BaseApiController
     }
 
     [HttpGet("consulta-21")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> GradoYAsignatura()
@@ -69,7 +69,7 @@ public class GradoController : BaseApiController
     }
 
     [HttpGet("consulta-22")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> GradoYAsignaturaMasDe40()
@@ -79,16 +79,16 @@ public class GradoController : BaseApiController
         return Ok(dto);
     }
 
-    /* [HttpGet("consulta-23")]
+    [HttpGet("consulta-23")]
     [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<object>> GradoYCredito()
+    public async Task<ActionResult<object>> CreditosPorTipoDeAsignatura()
     {
-        var entidad = await unitofwork.Grados.GradoYCredito();
+        var entidad = await unitofwork.Grados.CreditosPorTipoDeAsignatura();
         var dto = mapper.Map<IEnumerable<object>>(entidad);
         return Ok(dto);
-    } */
+    }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]

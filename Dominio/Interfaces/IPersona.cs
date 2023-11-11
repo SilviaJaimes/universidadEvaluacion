@@ -16,5 +16,9 @@ public interface IPersona : IGenericRepository<Persona>
     Task<int> TotalAlumnas();
     Task<int> AlumnosNacidosEn1999();
     Task<IEnumerable<object>> ProfesoresPorDepartamento();
+    Task<IEnumerable<object>> AlumnosMatriculadosPorCurso();
     Task<IEnumerable<object>> AsignaturaPorProfesor();
+    Task<Persona> ObtenerAlumnoMasJoven();
+    Task<IEnumerable<object>> ProfesoresSinDepartamentos();
+    Task<IEnumerable<object>> ProfesoresDepartamentoSinAsignatura();
 }

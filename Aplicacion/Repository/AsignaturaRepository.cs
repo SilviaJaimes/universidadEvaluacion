@@ -82,6 +82,21 @@ public class AsignaturaRepository : GenericRepository<Asignatura>, IAsignatura
         return asignaturas;
     }
 
+    public async Task<IEnumerable<object>> AsignaturasSinProfesor()
+    {
+        var asignaturas = await (
+            from a in _context.Asignaturas
+            where a.IdProfesor == null
+            select new
+            {
+                IdAsignatura = a.Id,
+                Asignatura = a.Nombre
+            })
+            .ToListAsync();
+
+        return asignaturas;
+    }
+
     public override async Task<IEnumerable<Asignatura>> GetAllAsync()
     {
         return await _context.Asignaturas

@@ -8,4 +8,5 @@ public interface IAsignatura : IGenericRepository<Asignatura>
     Task<IEnumerable<object>> AsignaturasOfertadas();
     Task<IEnumerable<object>> AsignaturasNit();
     Task<IEnumerable<object>> AsignaturasSinProfesores();
+    Task<IEnumerable<object>> AsignaturasSinProfesor();
 }

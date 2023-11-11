@@ -58,7 +58,7 @@ public class DepartamentoController : BaseApiController
     }
 
     [HttpGet("consulta-10")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> DepartamentoProfesor()
@@ -69,7 +69,7 @@ public class DepartamentoController : BaseApiController
     }
 
     [HttpGet("consulta-13")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> DepartamentoSinProfesores()
@@ -80,7 +80,7 @@ public class DepartamentoController : BaseApiController
     }
 
     [HttpGet("consulta-16")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> AsignaturaQueNoSeHayaImpartido()
@@ -91,12 +91,34 @@ public class DepartamentoController : BaseApiController
     }
 
     [HttpGet("consulta-20")]
-    /* [MapToApiVersion("1.0")] */
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> DepartamentoYProfesor()
     {
         var entidad = await unitofwork.Departamentos.DepartamentoYProfesor();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-28")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> DepartamentoSinProfesorAsociado()
+    {
+        var entidad = await unitofwork.Departamentos.DepartamentoSinProfesorAsociado();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-31")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> DepartamentosSinAsignaturas()
+    {
+        var entidad = await unitofwork.Departamentos.DepartamentosSinAsignaturas();
         var dto = mapper.Map<IEnumerable<object>>(entidad);
         return Ok(dto);
     }
