@@ -266,7 +266,7 @@ Para realizar la paginación se va al apartado de "Query" y se ingresa lo siguie
 **Endpoint**: `http://localhost:5033/api/Grado/consulta-23`
 
 **Método**: `GET`  
-
+![image](https://github.com/SilviaJaimes/universidadEvaluacion/assets/132016483/bdf6f464-943a-481c-b046-9d34e9f0e4e4)
 
 
 **24. Devuelve un listado que muestre cuántos alumnos se han matriculado de alguna asignatura en cada uno de los cursos escolares. El resultado deberá mostrar dos columnas, una columna con el año de inicio del curso escolar y otra con el número de alumnos matriculados:**
