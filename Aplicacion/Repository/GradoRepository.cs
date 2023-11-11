@@ -5,24 +5,24 @@ using Persistencia;
 
 namespace Aplicacion.Repository;
 
-public class RolRepository : GenericRepository<Rol>, IRol
+public class GradoRepository : GenericRepository<Grado>, IGrado
 {
     private readonly ApiContext _context;
 
-    public RolRepository(ApiContext context) : base(context)
+    public GradoRepository(ApiContext context) : base(context)
     {
         _context = context;
     }
 
-    public override async Task<IEnumerable<Rol>> GetAllAsync()
+    public override async Task<IEnumerable<Grado>> GetAllAsync()
     {
-        return await _context.Roles
+        return await _context.Grados
             .ToListAsync();
     }
 
-    public override async Task<Rol> GetByIdAsync(int id)
+    public override async Task<Grado> GetByIdAsync(int id)
     {
-        return await _context.Roles
+        return await _context.Grados
         .FirstOrDefaultAsync(p =>  p.Id == id);
     }
 }
