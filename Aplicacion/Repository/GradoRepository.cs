@@ -46,24 +46,18 @@ public class GradoRepository : GenericRepository<Grado>, IGrado
 
     public async Task<IEnumerable<object>> CreditosPorTipoDeAsignatura()
     {
-        var resultado = await _context.Grados
-            .SelectMany(g => g.Asignaturas, (g, a) => new
+        return await (
+            from a in _context.Asignaturas
+            join g in _context.Grados on a.IdGrado equals g.Id
+            group a by new { g.Nombre, a.Tipo } into grupo
+            select new
             {
-                NombreGrado = g.Nombre,
-                TipoAsignatura = a.Tipo,
-                Creditos = a.Creditos
-            })
-            .GroupBy(x => new { x.NombreGrado, x.TipoAsignatura })
-            .Select(g => new
-            {
-                NombreGrado = g.Key.NombreGrado,
-                TipoAsignatura = g.Key.TipoAsignatura,
-                SumaCreditos = g.Sum(x => x.Creditos)
-            })
-            .OrderByDescending(x => x.SumaCreditos)
-            .ToListAsync();
-
-        return resultado;
+                NombreGrado = grupo.Key.Nombre,
+                TipoAsignatura = grupo.Key.Tipo.ToString(),
+                SumaCreditos = grupo.Sum(x => x.Creditos)
+            }
+        )
+        .ToListAsync();
     }
 
     public override async Task<IEnumerable<Grado>> GetAllAsync()
