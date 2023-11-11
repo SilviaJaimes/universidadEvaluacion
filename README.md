@@ -90,15 +90,15 @@ Para realizar la paginación se va al apartado de "Query" y se ingresa lo siguie
 **Endpoint**: `http://localhost:5033/api/Persona/consulta-1`
 
 **Método**: `GET`  
-    ![image](https://github.com/SilviaJaimes/universidadEvaluacion/assets/132016483/3a70fd98-0132-4e50-b916-18b328f7a4a1)  
+![image](https://github.com/SilviaJaimes/universidadEvaluacion/assets/132016483/3a70fd98-0132-4e50-b916-18b328f7a4a1)  
 
 
 **2. Averigua el nombre y los dos apellidos de los alumnos que **no** han dado de alta su número de teléfono en la base de datos:**
 
-    **Endpoint**: `http://localhost:5033/api/Persona/consulta-2`
+**Endpoint**: `http://localhost:5033/api/Persona/consulta-2`
 
-    **Método**: `GET`  
-    ![image](https://github.com/SilviaJaimes/universidadEvaluacion/assets/132016483/5e82f690-5846-4189-9b32-154f5cfd34d5)  
+**Método**: `GET`  
+![image](https://github.com/SilviaJaimes/universidadEvaluacion/assets/132016483/5e82f690-5846-4189-9b32-154f5cfd34d5)  
 
 
 **3. Devuelve el listado de los alumnos que nacieron en `1999`:**
