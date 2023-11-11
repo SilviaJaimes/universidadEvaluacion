@@ -57,6 +57,39 @@ public class GradoController : BaseApiController
         return new Pager<GradoDto>(listEntidad, entidad.totalRegistros, rolParams.PageIndex, rolParams.PageSize, rolParams.Search);
     }
 
+    [HttpGet("consulta-21")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> GradoYAsignatura()
+    {
+        var entidad = await unitofwork.Grados.GradoYAsignatura();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-22")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> GradoYAsignaturaMasDe40()
+    {
+        var entidad = await unitofwork.Grados.GradoYAsignaturaMasDe40();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    /* [HttpGet("consulta-23")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> GradoYCredito()
+    {
+        var entidad = await unitofwork.Grados.GradoYCredito();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    } */
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

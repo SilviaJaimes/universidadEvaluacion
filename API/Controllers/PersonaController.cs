@@ -90,6 +90,116 @@ public class PersonaController : BaseApiController
         return Ok(dto);
     }
 
+    [HttpGet("consulta-4")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ProfesoresSinTelefono()
+    {
+        var entidad = await unitofwork.Personas.ProfesoresSinTelefono();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-6")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AlumnasMatricula()
+    {
+        var entidad = await unitofwork.Personas.AlumnasMatricula();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-8")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ProfesorDepartamento()
+    {
+        var entidad = await unitofwork.Personas.ProfesorDepartamento();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-11")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AlumnosCursoEscolar()
+    {
+        var entidad = await unitofwork.Personas.AlumnosCursoEscolar();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-12")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ProfesoresDepartamentos()
+    {
+        var entidad = await unitofwork.Personas.ProfesoresDepartamentos();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-14")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ProfesoresSinAsignatura()
+    {
+        var entidad = await unitofwork.Personas.ProfesoresSinAsignatura();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-17")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> TotalAlumnas()
+    {
+        var entidad = await unitofwork.Personas.TotalAlumnas();
+        var dto = mapper.Map<int>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-18")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AlumnosNacidosEn1999()
+    {
+        var entidad = await unitofwork.Personas.AlumnosNacidosEn1999();
+        var dto = mapper.Map<int>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-19")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> ProfesoresPorDepartamento()
+    {
+        var entidad = await unitofwork.Personas.ProfesoresPorDepartamento();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-25")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AsignaturaPorProfesor()
+    {
+        var entidad = await unitofwork.Personas.AsignaturaPorProfesor();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

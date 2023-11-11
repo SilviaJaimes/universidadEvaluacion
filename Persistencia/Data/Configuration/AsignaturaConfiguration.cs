@@ -47,7 +47,8 @@ public class AsignaturaConfiguration : IEntityTypeConfiguration<Asignatura>
 
         builder.HasOne(d => d.Profesor)
         .WithMany(d => d.Asignaturas)
-        .HasForeignKey(d => d.IdProfesor);
+        .HasForeignKey(d => d.IdProfesor)
+        .IsRequired(false);
 
         builder.HasOne(d => d.Grado)
         .WithMany(d => d.Asignaturas)

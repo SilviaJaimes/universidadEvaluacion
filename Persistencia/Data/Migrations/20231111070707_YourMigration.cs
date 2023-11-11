@@ -21,8 +21,8 @@ namespace Persistencia.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    anyoInicio = table.Column<DateOnly>(type: "date", nullable: false),
-                    anyoFin = table.Column<DateOnly>(type: "date", nullable: false)
+                    anyoInicio = table.Column<int>(type: "int", maxLength: 4, nullable: false),
+                    anyoFin = table.Column<int>(type: "int", maxLength: 4, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,7 +216,7 @@ namespace Persistencia.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     curso = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     cuatrimestre = table.Column<int>(type: "int", maxLength: 3, nullable: false),
-                    IdProfesor = table.Column<int>(type: "int", nullable: false),
+                    IdProfesor = table.Column<int>(type: "int", nullable: true),
                     IdGrado = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -232,8 +232,7 @@ namespace Persistencia.Data.Migrations
                         name: "FK_asignatura_profesor_IdProfesor",
                         column: x => x.IdProfesor,
                         principalTable: "profesor",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -244,8 +243,8 @@ namespace Persistencia.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdAlumno = table.Column<int>(type: "int", nullable: false),
-                    IdAsignatura = table.Column<int>(type: "int", nullable: false),
-                    IdCursoEscolar = table.Column<int>(type: "int", nullable: false)
+                    IdCursoEscolar = table.Column<int>(type: "int", nullable: false),
+                    IdAsignatura = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

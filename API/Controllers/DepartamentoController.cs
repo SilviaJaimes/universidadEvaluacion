@@ -57,6 +57,50 @@ public class DepartamentoController : BaseApiController
         return new Pager<DepartamentoDto>(listEntidad, entidad.totalRegistros, rolParams.PageIndex, rolParams.PageSize, rolParams.Search);
     }
 
+    [HttpGet("consulta-10")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> DepartamentoProfesor()
+    {
+        var entidad = await unitofwork.Departamentos.DepartamentoProfesor();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-13")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> DepartamentoSinProfesores()
+    {
+        var entidad = await unitofwork.Departamentos.DepartamentoSinProfesores();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-16")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AsignaturaQueNoSeHayaImpartido()
+    {
+        var entidad = await unitofwork.Departamentos.AsignaturaQueNoSeHayaImpartido();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-20")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> DepartamentoYProfesor()
+    {
+        var entidad = await unitofwork.Departamentos.DepartamentoYProfesor();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

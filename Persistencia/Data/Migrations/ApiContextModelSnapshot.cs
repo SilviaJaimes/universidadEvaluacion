@@ -43,7 +43,7 @@ namespace Persistencia.Data.Migrations
                     b.Property<int>("IdGrado")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdProfesor")
+                    b.Property<int?>("IdProfesor")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
@@ -73,12 +73,14 @@ namespace Persistencia.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("AnyoFin")
-                        .HasColumnType("date")
+                    b.Property<int>("AnyoFin")
+                        .HasMaxLength(4)
+                        .HasColumnType("int")
                         .HasColumnName("anyoFin");
 
-                    b.Property<DateOnly>("AnyoInicio")
-                        .HasColumnType("date")
+                    b.Property<int>("AnyoInicio")
+                        .HasMaxLength(4)
+                        .HasColumnType("int")
                         .HasColumnName("anyoInicio");
 
                     b.HasKey("Id");
@@ -337,9 +339,7 @@ namespace Persistencia.Data.Migrations
 
                     b.HasOne("Dominio.Entities.Profesor", "Profesor")
                         .WithMany("Asignaturas")
-                        .HasForeignKey("IdProfesor")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdProfesor");
 
                     b.Navigation("Grado");
 

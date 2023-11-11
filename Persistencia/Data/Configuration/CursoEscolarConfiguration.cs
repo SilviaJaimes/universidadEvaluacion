@@ -16,12 +16,14 @@ public class CursoEscolarConfiguration : IEntityTypeConfiguration<CursoEscolar>
         
         builder.Property(p => p.AnyoInicio)
         .HasColumnName("anyoInicio")
-        .HasColumnType("date")
+        .HasColumnType("int")
+        .HasMaxLength(4)
         .IsRequired();
 
         builder.Property(p => p.AnyoFin)
         .HasColumnName("anyoFin")
-        .HasColumnType("date")
+        .HasColumnType("int")
+        .HasMaxLength(4)
         .IsRequired();
     }
 }

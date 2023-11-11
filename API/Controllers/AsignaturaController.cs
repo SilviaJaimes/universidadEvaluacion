@@ -57,6 +57,50 @@ public class AsignaturaController : BaseApiController
         return new Pager<AsignaturaDto>(listEntidad, entidad.totalRegistros, rolParams.PageIndex, rolParams.PageSize, rolParams.Search);
     }
 
+    [HttpGet("consulta-5")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> Asignaturas()
+    {
+        var entidad = await unitofwork.Asignaturas.Asignaturas();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-7")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AsignaturasOfertadas()
+    {
+        var entidad = await unitofwork.Asignaturas.AsignaturasOfertadas();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-9")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AsignaturasNit()
+    {
+        var entidad = await unitofwork.Asignaturas.AsignaturasNit();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
+    [HttpGet("consulta-15")]
+    /* [MapToApiVersion("1.0")] */
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> AsignaturasSinProfesores()
+    {
+        var entidad = await unitofwork.Asignaturas.AsignaturasSinProfesores();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
